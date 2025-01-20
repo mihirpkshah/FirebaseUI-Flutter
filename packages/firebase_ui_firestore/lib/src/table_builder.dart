@@ -89,6 +89,8 @@ class FirestoreDataTable extends StatefulWidget {
     this.enableDefaultCellEditor = true,
     this.onTapCell,
     this.onSelectedRows,
+    this.shouldListenForUpdates = true,
+    this.docs,
   })  : assert(
           columnLabels is LinkedHashMap,
           'only LinkedHashMap are supported as header',
@@ -218,6 +220,12 @@ class FirestoreDataTable extends StatefulWidget {
   /// and the content in the first data column. This value defaults to 24.0.
   final double? checkboxHorizontalMargin;
 
+  /// Should listen on the query or fetch data once
+  final bool shouldListenForUpdates;
+
+  /// If this is not null, means this data is shown and not queried !
+  final List<QueryDocumentSnapshot<Map<String, Object?>>>? docs;
+
   @override
   // ignore: library_private_types_in_public_api
   _FirestoreTableState createState() => _FirestoreTableState();
@@ -263,67 +271,76 @@ class _FirestoreTableState extends State<FirestoreDataTable> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: _query.snapshots(),
-      builder: (context, snapshot) {
-        return AggregateQueryBuilder(
-          query: _query.count(),
-          builder: (context, aggSsnapshot) {
-            return FirestoreQueryBuilder<Map<String, Object?>>(
-              query: _query,
-              builder: (context, snapshot, child) {
-                if (aggSsnapshot.hasData) {
-                  source.setFromSnapshot(snapshot, aggSsnapshot.requireData);
-                } else {
-                  source.setFromSnapshot(snapshot);
-                }
-
-                return AnimatedBuilder(
-                  animation: source,
-                  builder: (context, child) {
-                    final actions = [
-                      ...?widget.actions,
-                      if (widget.canDeleteItems &&
-                          source._selectedRowIds.isNotEmpty)
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: source.onDeleteSelectedItems,
-                        ),
-                    ];
-                    return PaginatedDataTable(
-                      source: source,
-                      onSelectAll: selectionEnabled ? source.onSelectAll : null,
-                      onPageChanged: widget.onPageChanged,
-                      showCheckboxColumn: widget.showCheckboxColumn,
-                      arrowHeadColor: widget.arrowHeadColor,
-                      checkboxHorizontalMargin: widget.checkboxHorizontalMargin,
-                      columnSpacing: widget.columnSpacing,
-                      dataRowMaxHeight: widget.dataRowMaxHeight,
-                      dataRowMinHeight: widget.dataRowMinHeight,
-                      dragStartBehavior: widget.dragStartBehavior,
-                      headingRowHeight: widget.headingRowHeight,
-                      horizontalMargin: widget.horizontalMargin,
-                      rowsPerPage: widget.rowsPerPage,
-                      showFirstLastButtons: widget.showFirstLastButtons,
-                      sortAscending: widget.sortAscending,
-                      sortColumnIndex: widget.sortColumnIndex,
-                      header: actions.isEmpty
-                          ? null
-                          : (widget.header ?? const SizedBox()),
-                      actions: actions.isEmpty ? null : actions,
-                      columns: [
-                        for (final head in widget.columnLabels.values)
-                          DataColumn(label: head)
-                      ],
-                    );
-                  },
-                );
-              },
-            );
-          },
+    var tableWidget = AnimatedBuilder(
+      animation: source,
+      builder: (context, child) {
+        final actions = [
+          ...?widget.actions,
+          if (widget.canDeleteItems && source._selectedRowIds.isNotEmpty)
+            IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: source.onDeleteSelectedItems,
+            ),
+        ];
+        return PaginatedDataTable(
+          source: source,
+          onSelectAll: selectionEnabled ? source.onSelectAll : null,
+          onPageChanged: widget.onPageChanged,
+          showCheckboxColumn: widget.showCheckboxColumn,
+          arrowHeadColor: widget.arrowHeadColor,
+          checkboxHorizontalMargin: widget.checkboxHorizontalMargin,
+          columnSpacing: widget.columnSpacing,
+          dataRowMaxHeight: widget.dataRowMaxHeight,
+          dataRowMinHeight: widget.dataRowMinHeight,
+          dragStartBehavior: widget.dragStartBehavior,
+          headingRowHeight: widget.headingRowHeight,
+          horizontalMargin: widget.horizontalMargin,
+          rowsPerPage: widget.rowsPerPage,
+          showFirstLastButtons: widget.showFirstLastButtons,
+          sortAscending: widget.sortAscending,
+          sortColumnIndex: widget.sortColumnIndex,
+          header: actions.isEmpty ? null : (widget.header ?? const SizedBox()),
+          actions: actions.isEmpty ? null : actions,
+          columns: [
+            for (final head in widget.columnLabels.values)
+              DataColumn(label: head)
+          ],
         );
       },
     );
+
+    var childWidget = (widget.docs == null)
+        ? AggregateQueryBuilder(
+            query: _query.count(),
+            builder: (context, aggSsnapshot) {
+              return FirestoreQueryBuilder<Map<String, Object?>>(
+                query: _query,
+                shouldListenForUpdates: widget.shouldListenForUpdates,
+                builder: (context, snapshot, child) {
+                  if (aggSsnapshot.hasData) {
+                    source.setFromSnapshot(snapshot, aggSsnapshot.requireData);
+                  } else {
+                    source.setFromSnapshot(snapshot);
+                  }
+                  return tableWidget;
+                },
+              );
+            },
+          )
+        : Builder(builder: (context) {
+            source.setFromSnapshot(
+                FirestoreQueryBuilderSnapshot.fromStaticData(widget.docs!));
+            return tableWidget;
+          });
+
+    return (widget.shouldListenForUpdates && widget.docs == null)
+        ? StreamBuilder(
+            stream: _query.snapshots(),
+            builder: (context, snapshot) {
+              return childWidget;
+            },
+          )
+        : childWidget;
   }
 
   Future<void> defaultOnEditItem(
