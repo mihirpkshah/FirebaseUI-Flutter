@@ -224,7 +224,7 @@ class FirestoreDataTable extends StatefulWidget {
   final bool shouldListenForUpdates;
 
   /// If this is not null, means this data is shown and not queried !
-  final List<QueryDocumentSnapshot<Map<String, Object?>>>? docs;
+  final Stream<List<QueryDocumentSnapshot<Map<String, Object?>>>>? docs;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -271,7 +271,7 @@ class _FirestoreTableState extends State<FirestoreDataTable> {
 
   @override
   Widget build(BuildContext context) {
-    var tableWidget = AnimatedBuilder(
+    final tableWidget = AnimatedBuilder(
       animation: source,
       builder: (context, child) {
         final actions = [
@@ -309,7 +309,7 @@ class _FirestoreTableState extends State<FirestoreDataTable> {
       },
     );
 
-    var childWidget = (widget.docs == null)
+    final childWidget = (widget.docs == null)
         ? AggregateQueryBuilder(
             query: _query.count(),
             builder: (context, aggSsnapshot) {
@@ -327,11 +327,13 @@ class _FirestoreTableState extends State<FirestoreDataTable> {
               );
             },
           )
-        : Builder(builder: (context) {
-            source.setFromSnapshot(
-                FirestoreQueryBuilderSnapshot.fromStaticData(widget.docs!));
-            return tableWidget;
-          });
+        : StreamBuilder(
+            stream: widget.docs,
+            builder: (context, snapshot) {
+              source.setFromSnapshot(
+                  FirestoreQueryBuilderSnapshot.fromStaticData(snapshot.data!));
+              return tableWidget;
+            });
 
     return (widget.shouldListenForUpdates && widget.docs == null)
         ? StreamBuilder(
