@@ -32,6 +32,41 @@ class FirebaseUIFirestoreExample extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Contacts')),
+        body: SingleChildScrollView(
+          child: FutureBuilder(
+            future: FirebaseFirestore.instance.collection('users').get(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.done) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return FirestoreDataTable(
+                query: collection,
+                shouldListenForUpdates: false,
+                docs: Stream.value(snapshot.data!.docs),
+                columnLabels: {
+                  'firstName': Text('First Name'),
+                  'lastName': Text('Last Name'),
+                  'number': Text('Phone Number'),
+                  'userName': Text('Username'),
+                  'email': Text('Email'),
+                },
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FirebaseUIFirestoreExample extends StatelessWidget {
+  const _FirebaseUIFirestoreExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Contacts')),
         body: FirestoreListView<User>(
           query: collection,
           padding: const EdgeInsets.all(8.0),

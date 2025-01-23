@@ -318,7 +318,10 @@ class _FirestoreTableState extends State<FirestoreDataTable> {
                 shouldListenForUpdates: widget.shouldListenForUpdates,
                 builder: (context, snapshot, child) {
                   if (aggSsnapshot.hasData) {
-                    source.setFromSnapshot(snapshot, aggSsnapshot.requireData);
+                    source.setFromSnapshot(
+                        snapshot,
+                        _AggregateSnapshot.fromAggregateQuerySnapshot(
+                            aggSsnapshot.requireData));
                   } else {
                     source.setFromSnapshot(snapshot);
                   }
@@ -330,8 +333,15 @@ class _FirestoreTableState extends State<FirestoreDataTable> {
         : StreamBuilder(
             stream: widget.docs,
             builder: (context, snapshot) {
-              source.setFromSnapshot(
-                  FirestoreQueryBuilderSnapshot.fromStaticData(snapshot.data!));
+              if (snapshot.hasData) {
+                source.setFromSnapshot(
+                    FirestoreQueryBuilderSnapshot.fromStaticData(
+                        snapshot.data!),
+                    _AggregateSnapshot(count: snapshot.data!.length));
+              } else {
+                source.setFromSnapshot(
+                    FirestoreQueryBuilderSnapshot.fromStaticData([]));
+              }
               return tableWidget;
             });
 
@@ -880,7 +890,7 @@ class _Source extends DataTableSource {
   @override
   int get selectedRowCount => _selectedRowIds.length;
 
-  AggregateQuerySnapshot? _aggregateSnapshot;
+  _AggregateSnapshot? _aggregateSnapshot;
 
   @override
   bool get isRowCountApproximate =>
@@ -951,7 +961,7 @@ class _Source extends DataTableSource {
 
   void setFromSnapshot(
     FirestoreQueryBuilderSnapshot<Map<String, Object?>> snapshot, [
-    AggregateQuerySnapshot? aggregateSnapshot,
+    _AggregateSnapshot? aggregateSnapshot,
   ]) {
     if (aggregateSnapshot != null) {
       _aggregateSnapshot = aggregateSnapshot;
@@ -1026,5 +1036,17 @@ class _ValueView extends StatelessWidget {
     } else {
       return Text(value.toString());
     }
+  }
+}
+
+class _AggregateSnapshot {
+  const _AggregateSnapshot({
+    required this.count,
+  });
+  final int? count;
+
+  factory _AggregateSnapshot.fromAggregateQuerySnapshot(
+      AggregateQuerySnapshot snapshot) {
+    return _AggregateSnapshot(count: snapshot.count);
   }
 }
