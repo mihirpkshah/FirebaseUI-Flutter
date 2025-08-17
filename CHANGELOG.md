@@ -3,6 +3,216 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-08-04
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`firebase_ui_auth` - `v3.0.0`](#firebase_ui_auth---v300)
+ - [`firebase_ui_database` - `v2.0.0`](#firebase_ui_database---v200)
+ - [`firebase_ui_firestore` - `v2.0.0`](#firebase_ui_firestore---v200)
+ - [`firebase_ui_localizations` - `v2.0.0`](#firebase_ui_localizations---v200)
+ - [`firebase_ui_oauth` - `v2.0.0`](#firebase_ui_oauth---v200)
+ - [`firebase_ui_oauth_apple` - `v2.0.0`](#firebase_ui_oauth_apple---v200)
+ - [`firebase_ui_oauth_facebook` - `v2.0.0`](#firebase_ui_oauth_facebook---v200)
+ - [`firebase_ui_oauth_google` - `v2.0.0`](#firebase_ui_oauth_google---v200)
+ - [`firebase_ui_oauth_twitter` - `v2.0.0`](#firebase_ui_oauth_twitter---v200)
+ - [`firebase_ui_storage` - `v3.0.0`](#firebase_ui_storage---v300)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `firebase_ui_auth` - `v3.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+- **BREAKING** **FEAT**: Removed all API associated with `fetchSignInMethodsForEmail()` which has been removed from FlutterFire. This includes these methods: `AuthFlow.onBeforeProvidersForEmailFetch()`, `AuthFlow.onDifferentProvidersFound()`, `showDifferentMethodSignInDialog()`, `AuthProvider.onBeforeProvidersForEmailFetch()`, `AuthProvider.onDifferentProvidersFound()`, `AuthProvider.findProvidersForEmail()`. These classes: `DifferentSignInMethodsFound`, `FetchingProvidersForEmail`, `UniversalEmailSignInController`, `UniversalEmailSignInListener`, `UniversalEmailSignInScreen`, `DifferentMethodSignInView`, `FindProvidersForEmailView`, `DifferentMethodSignInDialog`.
+
+#### `firebase_ui_database` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+ - **BREAKING** **FEAT**: removed `dataRowHeight` from `FirebaseDatabaseDataTable`. Please use `dataRowMinHeight` & `dataRowMaxHeight`.
+
+#### `firebase_ui_firestore` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+- **BREAKING** **FEAT**: removed `dataRowHeight` from `FirestoreDataTable`. Please use `dataRowMinHeight` & `dataRowMaxHeight`.
+
+#### `firebase_ui_localizations` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+
+#### `firebase_ui_oauth` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+ - **BREAKING** **FEAT**: Removed all API associated with `fetchSignInMethodsForEmail()` which has been removed from FlutterFire. Removed `onBeforeProvidersForEmailFetch()` & `onDifferentProvidersFound()`.
+
+#### `firebase_ui_oauth_apple` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+
+#### `firebase_ui_oauth_facebook` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+
+#### `firebase_ui_oauth_google` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+
+#### `firebase_ui_oauth_twitter` - `v2.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+
+#### `firebase_ui_storage` - `v3.0.0`
+
+ - **BREAKING** **FEAT**: bump FlutterFire dependencies & remove deprecated API ([#529](https://github.com/firebase/FirebaseUI-Flutter/issues/529)). ([7650921e](https://github.com/firebase/FirebaseUI-Flutter/commit/7650921e0c99479d35302e994df7c31f7b624420))
+
+
+## 2025-07-28
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`firebase_ui_auth` - `v2.0.0`](#firebase_ui_auth---v200)
+
+Packages with other changes:
+
+ - [`firebase_ui_database` - `v1.5.3`](#firebase_ui_database---v153)
+ - [`firebase_ui_firestore` - `v1.7.3`](#firebase_ui_firestore---v173)
+ - [`firebase_ui_localizations` - `v1.14.1`](#firebase_ui_localizations---v1141)
+ - [`firebase_ui_oauth` - `v1.7.1`](#firebase_ui_oauth---v171)
+ - [`firebase_ui_oauth_apple` - `v1.3.3`](#firebase_ui_oauth_apple---v133)
+ - [`firebase_ui_oauth_facebook` - `v1.3.3`](#firebase_ui_oauth_facebook---v133)
+ - [`firebase_ui_oauth_google` - `v1.4.3`](#firebase_ui_oauth_google---v143)
+ - [`firebase_ui_oauth_twitter` - `v1.3.3`](#firebase_ui_oauth_twitter---v133)
+ - [`firebase_ui_storage` - `v2.1.3`](#firebase_ui_storage---v213)
+
+---
+
+#### `firebase_ui_auth` - `v2.0.0`
+
+ - **FIX**(firebase_ui_auth): Add padding between avatar and display name form ([#524](https://github.com/firebase/FirebaseUI-Flutter/issues/524)). ([2747c1ae](https://github.com/firebase/FirebaseUI-Flutter/commit/2747c1ae2869f2c6988cfab819d2885f75913494))
+ - **FIX**(firebase_ui_auth): Avoid redundant confirmation on account deletion ([#494](https://github.com/firebase/FirebaseUI-Flutter/issues/494)). ([e2626d24](https://github.com/firebase/FirebaseUI-Flutter/commit/e2626d244aabe70ba98ea6200a71e980e87c37b5))
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+ - **FEAT**(firebase_ui_auth): Override the default deletion modal. ([#493](https://github.com/firebase/FirebaseUI-Flutter/issues/493)). ([97210905](https://github.com/firebase/FirebaseUI-Flutter/commit/97210905daaa1536e9fd849a4480a20d547b8ccf))
+ - **BREAKING** **FEAT**(auth): Remove Dynamic Links, replace with app-links. ([#522](https://github.com/firebase/FirebaseUI-Flutter/issues/522)). ([b32ec609](https://github.com/firebase/FirebaseUI-Flutter/commit/b32ec6091da05d2f72188c3f335a2b6b954567ec))
+   - Dynamic Links has been stripped out, please ensure you follow this [migration guide to setup Firebase Hosting](firebase.google.com/support/guides/app-links-universal-links) to replace it. 
+
+#### `firebase_ui_database` - `v1.5.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_firestore` - `v1.7.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_localizations` - `v1.14.1`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_oauth` - `v1.7.1`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_oauth_apple` - `v1.3.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_oauth_facebook` - `v1.3.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_oauth_google` - `v1.4.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_oauth_twitter` - `v1.3.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+#### `firebase_ui_storage` - `v2.1.3`
+
+ - **FIX**: bump FF dependencies to latest ([#526](https://github.com/firebase/FirebaseUI-Flutter/issues/526)). ([9f355bfc](https://github.com/firebase/FirebaseUI-Flutter/commit/9f355bfcda8319c9ed4786e1e3da91babb4f5229))
+
+
+## 2025-06-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`firebase_ui_auth` - `v1.17.0`](#firebase_ui_auth---v1170)
+ - [`firebase_ui_database` - `v1.5.2`](#firebase_ui_database---v152)
+ - [`firebase_ui_firestore` - `v1.7.2`](#firebase_ui_firestore---v172)
+ - [`firebase_ui_localizations` - `v1.14.0`](#firebase_ui_localizations---v1140)
+ - [`firebase_ui_oauth` - `v1.7.0`](#firebase_ui_oauth---v170)
+ - [`firebase_ui_oauth_apple` - `v1.3.2`](#firebase_ui_oauth_apple---v132)
+ - [`firebase_ui_oauth_facebook` - `v1.3.2`](#firebase_ui_oauth_facebook---v132)
+ - [`firebase_ui_oauth_google` - `v1.4.2`](#firebase_ui_oauth_google---v142)
+ - [`firebase_ui_oauth_twitter` - `v1.3.2`](#firebase_ui_oauth_twitter---v132)
+ - [`firebase_ui_storage` - `v2.1.2`](#firebase_ui_storage---v212)
+
+---
+
+#### `firebase_ui_auth` - `v1.17.0`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+ - **FEAT**(firebase_ui_auth): Use icon from OAuth provider as a fallback in ProfileScreen ([#474](https://github.com/firebase/FirebaseUI-Flutter/issues/474)). ([55f04ebb](https://github.com/firebase/FirebaseUI-Flutter/commit/55f04ebbf29fcc7f8abe11df1b4e7dfaf04028f5))
+
+#### `firebase_ui_database` - `v1.5.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+
+#### `firebase_ui_firestore` - `v1.7.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+
+#### `firebase_ui_localizations` - `v1.14.0`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+ - **FEAT**: Add missing translation values ([#507](https://github.com/firebase/FirebaseUI-Flutter/issues/507)). ([fc0e3da0](https://github.com/firebase/FirebaseUI-Flutter/commit/fc0e3da07388b624e049c3878cbf03f6817a840f))
+
+#### `firebase_ui_oauth` - `v1.7.0`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+ - **FEAT**(firebase_ui_auth): Use icon from OAuth provider as a fallback in ProfileScreen ([#474](https://github.com/firebase/FirebaseUI-Flutter/issues/474)). ([55f04ebb](https://github.com/firebase/FirebaseUI-Flutter/commit/55f04ebbf29fcc7f8abe11df1b4e7dfaf04028f5))
+
+#### `firebase_ui_oauth_apple` - `v1.3.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+
+#### `firebase_ui_oauth_facebook` - `v1.3.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+
+#### `firebase_ui_oauth_google` - `v1.4.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+
+#### `firebase_ui_oauth_twitter` - `v1.3.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+
+#### `firebase_ui_storage` - `v2.1.2`
+
+ - **FIX**: bump FF dependencies to latest ([#520](https://github.com/firebase/FirebaseUI-Flutter/issues/520)). ([ac4f1fdd](https://github.com/firebase/FirebaseUI-Flutter/commit/ac4f1fddcee04b020a6384ac74f2571bccafe44e))
+ - **FIX**: progress is NaN when both bytesTransferred & totalBytes are 0 ([#491](https://github.com/firebase/FirebaseUI-Flutter/issues/491)). ([95b5f53a](https://github.com/firebase/FirebaseUI-Flutter/commit/95b5f53a35c06d5f4ac2b8f714400fd1f05524ab))
+
+
 ## 2025-01-13
 
 ### Changes
